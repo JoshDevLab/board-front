@@ -31,7 +31,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && to.name !== 'register' && VueCookies.get('accessToken') === null) {
+  if (to.name !== 'login' && to.name !== 'register' && !VueCookies.get('accessToken')) {
     // If the user is not logged in and is trying to access a protected route,
     // redirect them to the login page
     next({ name: 'login' })

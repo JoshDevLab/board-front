@@ -1,5 +1,5 @@
 <template>
-  <nav v-if=" accessToken === null ">
+  <nav v-if="!isAuthenticated">
     <router-link to="/">login</router-link> |
     <router-link to="/register">register</router-link> |
     <router-link to="/board">board</router-link>
@@ -41,10 +41,10 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('user', ['accessToken'])
+    ...mapState('user', ['isAuthenticated'])
   },
   mounted() {
-    console.log('co '+this.accessToken);
+    console.log('co '+this.isAuthenticated);
   },
   methods: {
     logout() {
