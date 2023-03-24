@@ -1,7 +1,12 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/register">About</router-link>
+  <nav v-if=" accessToken === null ">
+    <router-link to="/">login</router-link> |
+    <router-link to="/register">register</router-link> |
+    <router-link to="/board">board</router-link>
+  </nav>
+  <nav v-else>
+    <a @click="logout()">logout</a> |
+    <router-link to="/board">board</router-link>
   </nav>
   <div class="container">
     <router-view/>
@@ -30,3 +35,22 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState('user', ['accessToken'])
+  },
+  mounted() {
+    console.log('co '+this.accessToken);
+  },
+  methods: {
+    logout() {
+
+    }
+  },
+
+}
+</script>

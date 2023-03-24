@@ -4,11 +4,11 @@ import Vuecookies from "vue-cookies";
 export const user = {
     namespaced: true, // user 가 모듈로 사용될수 있다는 코드(안쓰면 unknown 뜸)
     state: {
-        accessToken: null
+        accessToken: null,
     },
     mutations: {
         loginToken: (state,payload) => {
-            Vuecookies.set('accessToken', payload.accessToken, '1h');
+            Vuecookies.set('accessToken', payload.accessToken, '2s');
             state.accessToken = payload.accessToken;
         }
     },
@@ -16,6 +16,7 @@ export const user = {
         login: ({commit}, params) => {
             return axios.post('http://localhost:8080/api/v1/auth/authenticate',params)
                 .then(res => {
+                    console.log(res);
                     commit('loginToken', res.data);
                 })
                 .catch(err => {
@@ -26,8 +27,8 @@ export const user = {
         register: ({commit}, params) => {
             return axios.post('http://localhost:8080/api/v1/auth/register',params)
                 .then(res => {
-                    commit('loginToken', res.data);
                     console.log(res);
+                    commit('loginToken', res.data);
                 })
                 .catch(err => {
                     console.log(err);
