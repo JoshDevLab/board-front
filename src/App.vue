@@ -38,17 +38,20 @@ nav a.router-link-exact-active {
 
 <script>
 import { mapState } from 'vuex'
+import VueCookies from 'vue-cookies'
 
 export default {
   computed: {
     ...mapState('user', ['isAuthenticated'])
   },
   mounted() {
-    console.log('co '+this.isAuthenticated);
+    console.log('why '+this.isAuthenticated);
   },
   methods: {
     logout() {
-
+      VueCookies.remove('accessToken');
+      this.$store.commit('user/logoutToken')
+      this.$router.push('/');
     }
   },
 

@@ -19,6 +19,7 @@
         </tr>
       </tbody>
     </table>
+    <router-link to="/board/registerBoard" class="btn btn-primary">글 등록</router-link>
   </div>
 </template>
 
