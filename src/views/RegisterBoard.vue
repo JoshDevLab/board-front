@@ -29,6 +29,17 @@ export default {
             }
         }
     },
+    methods: {
+        boardRegister() {
+            this.$store.dispatch('board/board',this.form)
+                .then(data => {
+                            console.log(data);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+        }
+    },
 }
 </script>
 

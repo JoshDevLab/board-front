@@ -39,6 +39,7 @@ export const user = {
                 .then(res => {
                     console.log(res);
                     commit('loginToken', res.data.token);
+                    router.push('/board');
                 })
                 .catch(err => {
                     console.log(err);
